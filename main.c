@@ -3,7 +3,7 @@
 #include <string.h>
 
 int main(int argc, char* argv[]) {
-    char *message = "";
+    char* message = "";
 
     if (argc == 1) {
         message = "y";
@@ -17,10 +17,10 @@ int main(int argc, char* argv[]) {
                 addiction = ' ';
             }
 
-            char *tmp = argv[i];
+            char* tmp = argv[i];
 
             size_t source_len = strlen(tmp);
-            char *tmp2 = (char *)malloc(source_len+1);
+            char* tmp2 = (char*) malloc(source_len+1);
             strcpy(tmp2, tmp);
 
             tmp2[source_len] = addiction;
@@ -30,19 +30,25 @@ int main(int argc, char* argv[]) {
             size_t message_len = strlen(message);
             size_t total_len = tmp2_len + message_len + 1;
 
-            char *result = (char *)malloc(total_len*sizeof(char));
+            char* result = (char*) malloc(total_len*sizeof(char));
 
             strcpy(result, message);
             strcat(result, tmp2);
 
-            message = (char *)malloc(strlen(result));
+            message = (char*) malloc(strlen(result));
             strcpy(message, result);
+
+            free(tmp);
+            free(tmp2);
+            free(result);
         }
     }
 
     for (;;) {
         printf("%s\n", message);
     }
+
+    free(message);
 
     return 0;
 }
